@@ -2,6 +2,7 @@ let submitBtn = document.querySelector('#submit');
 let checkBox = document.querySelector('#checkbox');
 let username = document.querySelector('#username');
 let password= document.querySelector('#password');
+let loginBtn=document.querySelector('#existing');
 
 submitBtn.addEventListener('click',(event)=>{
 	event.preventDefault();
@@ -17,12 +18,8 @@ submitBtn.addEventListener('click',(event)=>{
   else if(JSON.parse(localStorage.getItem('users'))){
   	let savedUser =	JSON.parse(localStorage.getItem('users'));
     savedUser.forEach((user)=>{
-      if(user.UserName === username.value ){
-      let loginBtn=document.createElement('Button');
-      loginBtn.id= "existing";
-      loginBtn.innerText = `Login as existing user ` ;
-      document.body.append(loginBtn);
-      // let existingUser= document.getElementById('existing');
+      if(user.UserName === username.value ){      
+	    loginBtn.removeAttribute('hidden')
       loginBtn.addEventListener('click',(e)=>{
   		  e.preventDefault();
   		  alert(`Logged in as ${user.UserName}`)})
